@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ihoway.dao.CommentDao">
+  <cache type="cn.ihoway.util.HowayRedisCache" />
+  <resultMap id="BaseResultMap" type="cn.ihoway.entity.Comment">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="belong_id" jdbcType="INTEGER" property="belongId" />
+    <result column="replied_id" jdbcType="INTEGER" property="repliedId" />
+    <result column="floor" jdbcType="INTEGER" property="floor" />
+    <result column="publisher" jdbcType="INTEGER" property="publisher" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="backup" jdbcType="VARCHAR" property="backup" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `type`, belong_id, replied_id, `floor`, publisher, content, `backup`, create_time, 
+    `status`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByIdAndType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from comment
+    where id = #{id,jdbcType=INTEGER} and type = #{type,jdbcType=INTEGER}
+  </select>
+  <select id="selectCommentsByBelongId"  parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from comment
+    where belong_id = #{belongId,jdbcType=INTEGER} and type = #{type,jdbcType=INTEGER} order by floor
+    limit #{index,jdbcType=INTEGER} , #{size,jdbcType=INTEGER}
+  </select>
+  <select id="selectFloorNumsByBelongId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select
+      count(*)
+    from comment
+    where belong_id = #{belongId,jdbcType=INTEGER} and type = #{type,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from comment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.ihoway.entity.Comment" useGeneratedKeys="true">
+    insert into comment (`type`, belong_id, replied_id, 
+      `floor`, publisher, content, 
+      `backup`, create_time, `status`
+      )
+    values (#{type,jdbcType=INTEGER}, #{belongId,jdbcType=INTEGER}, #{repliedId,jdbcType=INTEGER}, 
+      #{floor,jdbcType=INTEGER}, #{publisher,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+      #{backup,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.ihoway.entity.Comment" useGeneratedKeys="true">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="belongId != null">
+        belong_id,
+      </if>
+      <if test="repliedId != null">
+        replied_id,
+      </if>
+      <if test="floor != null">
+        `floor`,
+      </if>
+      <if test="publisher != null">
+        publisher,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="backup != null">
+        `backup`,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="belongId != null">
+        #{belongId,jdbcType=INTEGER},
+      </if>
+      <if test="repliedId != null">
+        #{repliedId,jdbcType=INTEGER},
+      </if>
+      <if test="floor != null">
+        #{floor,jdbcType=INTEGER},
+      </if>
+      <if test="publisher != null">
+        #{publisher,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="backup != null">
+        #{backup,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ihoway.entity.Comment">
+    update comment
+    <set>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="belongId != null">
+        belong_id = #{belongId,jdbcType=INTEGER},
+      </if>
+      <if test="repliedId != null">
+        replied_id = #{repliedId,jdbcType=INTEGER},
+      </if>
+      <if test="floor != null">
+        `floor` = #{floor,jdbcType=INTEGER},
+      </if>
+      <if test="publisher != null">
+        publisher = #{publisher,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="backup != null">
+        `backup` = #{backup,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ihoway.entity.Comment">
+    update comment
+    set `type` = #{type,jdbcType=INTEGER},
+      belong_id = #{belongId,jdbcType=INTEGER},
+      replied_id = #{repliedId,jdbcType=INTEGER},
+      `floor` = #{floor,jdbcType=INTEGER},
+      publisher = #{publisher,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      `backup` = #{backup,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

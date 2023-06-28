@@ -1,0 +1,9 @@
+.idea/
+lib/
+target/
+forum-api/target
+forum-core/target
+forum-processor/target
+forum-provider/target
+forum-util/target
+forum-web/target

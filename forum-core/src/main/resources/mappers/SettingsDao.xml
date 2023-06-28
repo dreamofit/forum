@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ihoway.dao.SettingsDao">
+  <resultMap id="BaseResultMap" type="cn.ihoway.entity.Settings">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="read_permission" jdbcType="INTEGER" property="readPermission" />
+    <result column="chat_permission" jdbcType="INTEGER" property="chatPermission" />
+    <result column="comment_permission" jdbcType="INTEGER" property="commentPermission" />
+    <result column="read_range" jdbcType="INTEGER" property="readRange" />
+    <result column="styles" jdbcType="VARCHAR" property="styles" />
+    <result column="notify" jdbcType="INTEGER" property="notify" />
+    <result column="background" jdbcType="INTEGER" property="background" />
+    <result column="language" jdbcType="INTEGER" property="language" />
+    <result column="recommend" jdbcType="INTEGER" property="recommend" />
+    <result column="backup" jdbcType="VARCHAR" property="backup" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, read_permission, chat_permission, comment_permission, read_range, styles, 
+    `notify`, background, `language`, recommend, `backup`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from settings
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from settings
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.ihoway.entity.Settings" useGeneratedKeys="true">
+    insert into settings (user_id, read_permission, chat_permission, 
+      comment_permission, read_range, styles, 
+      `notify`, background, `language`, 
+      recommend, `backup`)
+    values (#{userId,jdbcType=INTEGER}, #{readPermission,jdbcType=INTEGER}, #{chatPermission,jdbcType=INTEGER}, 
+      #{commentPermission,jdbcType=INTEGER}, #{readRange,jdbcType=INTEGER}, #{styles,jdbcType=VARCHAR}, 
+      #{notify,jdbcType=INTEGER}, #{background,jdbcType=INTEGER}, #{language,jdbcType=INTEGER}, 
+      #{recommend,jdbcType=INTEGER}, #{backup,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.ihoway.entity.Settings" useGeneratedKeys="true">
+    insert into settings
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="readPermission != null">
+        read_permission,
+      </if>
+      <if test="chatPermission != null">
+        chat_permission,
+      </if>
+      <if test="commentPermission != null">
+        comment_permission,
+      </if>
+      <if test="readRange != null">
+        read_range,
+      </if>
+      <if test="styles != null">
+        styles,
+      </if>
+      <if test="notify != null">
+        `notify`,
+      </if>
+      <if test="background != null">
+        background,
+      </if>
+      <if test="language != null">
+        `language`,
+      </if>
+      <if test="recommend != null">
+        recommend,
+      </if>
+      <if test="backup != null">
+        `backup`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="readPermission != null">
+        #{readPermission,jdbcType=INTEGER},
+      </if>
+      <if test="chatPermission != null">
+        #{chatPermission,jdbcType=INTEGER},
+      </if>
+      <if test="commentPermission != null">
+        #{commentPermission,jdbcType=INTEGER},
+      </if>
+      <if test="readRange != null">
+        #{readRange,jdbcType=INTEGER},
+      </if>
+      <if test="styles != null">
+        #{styles,jdbcType=VARCHAR},
+      </if>
+      <if test="notify != null">
+        #{notify,jdbcType=INTEGER},
+      </if>
+      <if test="background != null">
+        #{background,jdbcType=INTEGER},
+      </if>
+      <if test="language != null">
+        #{language,jdbcType=INTEGER},
+      </if>
+      <if test="recommend != null">
+        #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="backup != null">
+        #{backup,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByUserSelective" parameterType="cn.ihoway.entity.Settings">
+    update settings
+    <set>
+      <if test="readPermission != null">
+        read_permission = #{readPermission,jdbcType=INTEGER},
+      </if>
+      <if test="chatPermission != null">
+        chat_permission = #{chatPermission,jdbcType=INTEGER},
+      </if>
+      <if test="commentPermission != null">
+        comment_permission = #{commentPermission,jdbcType=INTEGER},
+      </if>
+      <if test="readRange != null">
+        read_range = #{readRange,jdbcType=INTEGER},
+      </if>
+      <if test="styles != null">
+        styles = #{styles,jdbcType=VARCHAR},
+      </if>
+      <if test="notify != null">
+        `notify` = #{notify,jdbcType=INTEGER},
+      </if>
+      <if test="background != null">
+        background = #{background,jdbcType=INTEGER},
+      </if>
+      <if test="language != null">
+        `language` = #{language,jdbcType=INTEGER},
+      </if>
+      <if test="recommend != null">
+        recommend = #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="backup != null">
+        `backup` = #{backup,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ihoway.entity.Settings">
+    update settings
+    set user_id = #{userId,jdbcType=INTEGER},
+      read_permission = #{readPermission,jdbcType=INTEGER},
+      chat_permission = #{chatPermission,jdbcType=INTEGER},
+      comment_permission = #{commentPermission,jdbcType=INTEGER},
+      read_range = #{readRange,jdbcType=INTEGER},
+      styles = #{styles,jdbcType=VARCHAR},
+      `notify` = #{notify,jdbcType=INTEGER},
+      background = #{background,jdbcType=INTEGER},
+      `language` = #{language,jdbcType=INTEGER},
+      recommend = #{recommend,jdbcType=INTEGER},
+      `backup` = #{backup,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

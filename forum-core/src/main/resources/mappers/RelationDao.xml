@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ihoway.dao.RelationDao">
+  <resultMap id="BaseResultMap" type="cn.ihoway.entity.Relation">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="first_id" jdbcType="INTEGER" property="firstId" />
+    <result column="second_id" jdbcType="INTEGER" property="secondId" />
+    <result column="action" jdbcType="INTEGER" property="action" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="group" jdbcType="VARCHAR" property="group" />
+    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+    <result column="backup" jdbcType="VARCHAR" property="backup" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, first_id, second_id, `action`, content, `group`, update_time, `backup`,num
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from relation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from relation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.ihoway.entity.Relation" useGeneratedKeys="true">
+    insert into relation (first_id, second_id, `action`, 
+      content, `group`, update_time, 
+      `backup`,num)
+    values (#{firstId,jdbcType=INTEGER}, #{secondId,jdbcType=INTEGER}, #{action,jdbcType=INTEGER}, 
+      #{content,jdbcType=VARCHAR}, #{group,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, 
+      #{backup,jdbcType=VARCHAR},#{num,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.ihoway.entity.Relation" useGeneratedKeys="true">
+    insert into relation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="firstId != null">
+        first_id,
+      </if>
+      <if test="secondId != null">
+        second_id,
+      </if>
+      <if test="action != null">
+        `action`,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="group != null">
+        `group`,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="backup != null">
+        `backup`,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="firstId != null">
+        #{firstId,jdbcType=INTEGER},
+      </if>
+      <if test="secondId != null">
+        #{secondId,jdbcType=INTEGER},
+      </if>
+      <if test="action != null">
+        #{action,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="group != null">
+        #{group,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="backup != null">
+        #{backup,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ihoway.entity.Relation">
+    update relation
+    <set>
+      <if test="firstId != null">
+        first_id = #{firstId,jdbcType=INTEGER},
+      </if>
+      <if test="secondId != null">
+        second_id = #{secondId,jdbcType=INTEGER},
+      </if>
+      <if test="action != null">
+        `action` = #{action,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="group != null">
+        `group` = #{group,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="backup != null">
+        `backup` = #{backup,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ihoway.entity.Relation">
+    update relation
+    set first_id = #{firstId,jdbcType=INTEGER},
+      second_id = #{secondId,jdbcType=INTEGER},
+      `action` = #{action,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      `group` = #{group,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      `backup` = #{backup,jdbcType=VARCHAR},
+        num = #{num,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="truncate">
+    truncate table relation
+  </update>
+  <select id="selectALl"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from relation
+  </select>
+</mapper>

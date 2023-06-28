@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ihoway.dao.EssayDao">
+  <cache type="cn.ihoway.util.HowayRedisCache" />
+  <resultMap id="BaseResultMap" type="cn.ihoway.entity.Essay">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="author" jdbcType="INTEGER" property="author" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+    <result column="imgs" jdbcType="VARCHAR" property="imgs" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="read_permissions" jdbcType="INTEGER" property="readPermissions" />
+    <result column="comment_permission" jdbcType="INTEGER" property="commentPermission" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="backup" jdbcType="VARCHAR" property="backup" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="topic" jdbcType="VARCHAR" property="topic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, content, author, create_time, update_time, imgs, `type`, url, read_permissions,
+    comment_permission, `status`, `backup`, `label`, topic
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from essay
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectALLByType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from essay where type = #{type,jdbcType=INTEGER} and status = 0
+    limit #{index,jdbcType=INTEGER} , #{size,jdbcType=INTEGER}
+  </select>
+  <select id="selectByUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from essay where type = #{type,jdbcType=INTEGER} and author = #{userId,jdbcType=INTEGER} and status = 0
+    limit #{index,jdbcType=INTEGER} , #{size,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from essay
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.ihoway.entity.Essay" useGeneratedKeys="true">
+    insert into essay (title,content, author, create_time,
+      update_time, imgs, `type`, 
+      url, read_permissions, comment_permission, 
+      `status`, `backup`, `label`, 
+      topic)
+    values (#{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},#{author,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR},
+      #{updateTime,jdbcType=VARCHAR}, #{imgs,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{url,jdbcType=VARCHAR}, #{readPermissions,jdbcType=INTEGER}, #{commentPermission,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{backup,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, 
+      #{topic,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.ihoway.entity.Essay" useGeneratedKeys="true">
+    insert into essay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="imgs != null">
+        imgs,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="readPermissions != null">
+        read_permissions,
+      </if>
+      <if test="commentPermission != null">
+        comment_permission,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="backup != null">
+        `backup`,
+      </if>
+      <if test="label != null">
+        `label`,
+      </if>
+      <if test="topic != null">
+        topic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="imgs != null">
+        #{imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="readPermissions != null">
+        #{readPermissions,jdbcType=INTEGER},
+      </if>
+      <if test="commentPermission != null">
+        #{commentPermission,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="backup != null">
+        #{backup,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null">
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="topic != null">
+        #{topic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ihoway.entity.Essay">
+    update essay
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="imgs != null">
+        imgs = #{imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="readPermissions != null">
+        read_permissions = #{readPermissions,jdbcType=INTEGER},
+      </if>
+      <if test="commentPermission != null">
+        comment_permission = #{commentPermission,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="backup != null">
+        `backup` = #{backup,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null">
+        `label` = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="topic != null">
+        topic = #{topic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ihoway.entity.Essay">
+    update essay
+    set title = #{title,jdbcType=VARCHAR},
+        content = #{content,jdbcType=VARCHAR},
+      author = #{author,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      imgs = #{imgs,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      read_permissions = #{readPermissions,jdbcType=INTEGER},
+      comment_permission = #{commentPermission,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      `backup` = #{backup,jdbcType=VARCHAR},
+      `label` = #{label,jdbcType=VARCHAR},
+      topic = #{topic,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

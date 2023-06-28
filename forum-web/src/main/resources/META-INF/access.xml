@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<access xmlns:howay="http://ihoway.cn/howay"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://ihoway.cn/howay
+            https://ihoway.cn/service/howay.xsd">
+
+    <!-- 写文章 -->
+    <howay:service id="essayAdd" dir="essay" prefix="EssayAdd" processor="" input="" output=""/>
+    <!-- 文章详情 -->
+    <howay:service id="essayDetail" dir="essay" prefix="EssayDetail" processor="" input="" output=""/>
+    <!-- 文章查询 -->
+    <howay:service id="essaySearch" dir="essay" prefix="EssaySearch" processor="" input="" output=""/>
+    <!-- 写评论 -->
+    <howay:service id="commentAdd" dir="comment" prefix="CommentAdd" processor="" input="" output=""/>
+    <!-- 查询指定文章下面评论 -->
+    <howay:service id="commentsByBelongId" dir="comment" prefix="CommentsByBelongId" processor="" input="" output=""/>
+    <!-- 查询某用户发表的全部文章 -->
+    <howay:service id="myEssay" dir="user" prefix="EssaySearchByUser" processor="" input="" output=""/>
+    <!-- 获取用户和目标对象的全部聊天记录 -->
+    <howay:service id="myChat" dir="relation" prefix="ChatContent" processor="" input="" output=""/>
+    <!-- 用户行为 -->
+    <howay:service id="action" dir="operate" prefix="OperateAction" processor="" input="" output=""/>
+    <!-- 用户关系：关注/拉黑/私信 -->
+    <howay:service id="relation" dir="relation" prefix="RelationOpt" processor="" input="" output=""/>
+
+</access>
