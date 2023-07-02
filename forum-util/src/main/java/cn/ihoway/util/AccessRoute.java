@@ -58,10 +58,18 @@ public class AccessRoute {
             Field[] fields = inputClz.getFields();
             for (Field field : fields){
                 if("ip".equals(field.getName())){
-                    field.set(input,HowayRequest.getIpAddr(request)); //input.ip赋值
+                    if(request == null){
+                        field.set(input,"127.0.0.1"); //input.ip赋值
+                    }else {
+                        field.set(input,HowayRequest.getIpAddr(request)); //input.ip赋值
+                    }
                 }
                 if("method".equals(field.getName())){
-                    field.set(input,request.getMethod()); //input.method赋值
+                    if(request == null){
+                        field.set(input,"RPC"); //input.method赋值
+                    }else {
+                        field.set(input,request.getMethod()); //input.method赋值
+                    }
                 }
             }
             return execute(processorName,outputName,input);
