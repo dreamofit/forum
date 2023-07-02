@@ -1,5 +1,6 @@
 package cn.ihoway;
 
+import cn.ihoway.util.ConfigException;
 import cn.ihoway.util.HowayContainer;
 import cn.ihoway.task.MyScheduler;
 import cn.ihoway.util.AccessXmlParser;
@@ -14,10 +15,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 @EnableCaching
 public class ServiceInit {
 
-    public static void main( String[] args ) {
+    public static void main( String[] args ) throws ConfigException {
         HowayLog logger = new HowayLog(ServiceInit.class);
-        //定时任务启动
-        MyScheduler.execute();
         //生产者provider配置读取
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("dubbo/provider.xml");
         context.start();
@@ -26,6 +25,8 @@ public class ServiceInit {
         container.start();
         //accessXml解析器启动
         AccessXmlParser.init();
+        //定时任务启动
+        MyScheduler.execute();
         SpringApplication.run(ServiceInit.class, args);
         logger.info("*** forum服务已经启动 ***");
     }

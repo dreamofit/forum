@@ -97,6 +97,12 @@ public abstract class CommonProcessor<I extends CommonInput,O extends CommonOutp
         return HowayResult.createSuccessResult(output);
     }
 
+    /**
+     * AccessRoute中有通过反射使用该方法
+     * @param input input
+     * @param output output
+     * @return HowayResult
+     */
     public HowayResult doExecute(I input, O output){
         if(StringUtils.isNotBlank(input.traceId)){
             MDC.put("traceId",input.traceId);
