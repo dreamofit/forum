@@ -6,3 +6,4 @@ forum-core/target
 forum-processor/target
 forum-access/target
 forum-util/target
+*.iml
