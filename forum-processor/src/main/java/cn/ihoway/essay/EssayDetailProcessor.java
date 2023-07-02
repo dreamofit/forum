@@ -3,7 +3,7 @@ package cn.ihoway.essay;
 import cn.ihoway.annotation.Processor;
 import cn.ihoway.api.user.UserAsm;
 import cn.ihoway.common.CommonProcessor;
-import cn.ihoway.container.HowayContainer;
+import cn.ihoway.util.HowayContainer;
 import cn.ihoway.entity.Essay;
 import cn.ihoway.essay.io.EssayDetailInput;
 import cn.ihoway.essay.io.EssayDetailOutput;

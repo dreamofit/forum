@@ -1,13 +1,6 @@
-package cn.ihoway.controller.comment;
+package cn.ihoway.web.controller.comment;
 
-import cn.ihoway.comment.CommentAddProcessor;
-import cn.ihoway.comment.CommentsByBelongIdProcessor;
-import cn.ihoway.comment.io.CommentAddInput;
-import cn.ihoway.comment.io.CommentAddOutput;
-import cn.ihoway.comment.io.CommentsByBelongIdInput;
-import cn.ihoway.comment.io.CommentsByBelongIdOutput;
 import cn.ihoway.util.AccessRoute;
-import cn.ihoway.util.HowayRequest;
 import cn.ihoway.util.HowayResult;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.web.bind.annotation.*;

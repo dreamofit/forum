@@ -5,7 +5,7 @@
             https://ihoway.cn/service/howay.xsd">
 
     <!-- 写文章 -->
-    <howay:service id="essayAdd" dir="essay" prefix="EssayAdd" processor="" input="" output=""/>
+    <howay:service id="essayAdd" dir="essay" prefix="EssayAdd" processor="cn.ihoway.essay.EssayAddProcessor" input="" output=""/>
     <!-- 文章详情 -->
     <howay:service id="essayDetail" dir="essay" prefix="EssayDetail" processor="" input="" output=""/>
     <!-- 文章查询 -->

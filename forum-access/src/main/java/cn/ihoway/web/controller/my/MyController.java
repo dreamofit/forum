@@ -1,13 +1,6 @@
-package cn.ihoway.controller.my;
+package cn.ihoway.web.controller.my;
 
-import cn.ihoway.relation.ChatContentProcessor;
-import cn.ihoway.relation.io.ChatContentInput;
-import cn.ihoway.relation.io.ChatContentOutput;
-import cn.ihoway.user.EssaySearchByUserProcessor;
-import cn.ihoway.user.io.EssaySearchByUserInput;
-import cn.ihoway.user.io.EssaySearchByUserOutput;
 import cn.ihoway.util.AccessRoute;
-import cn.ihoway.util.HowayRequest;
 import cn.ihoway.util.HowayResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;

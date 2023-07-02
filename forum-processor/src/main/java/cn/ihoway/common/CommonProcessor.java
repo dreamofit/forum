@@ -8,7 +8,7 @@ import cn.ihoway.annotation.Processor;
 import cn.ihoway.api.user.UserAsm;
 import cn.ihoway.common.io.CommonInput;
 import cn.ihoway.common.io.CommonOutput;
-import cn.ihoway.container.HowayContainer;
+import cn.ihoway.util.HowayContainer;
 import cn.ihoway.type.AuthorityLevel;
 import cn.ihoway.type.StatusCode;
 import cn.ihoway.util.HowayConfigReader;

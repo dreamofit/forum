@@ -1,12 +1,8 @@
-package cn.ihoway.controller.relation;
+package cn.ihoway.web.controller.relation;
 
 
-import cn.ihoway.relation.RelationOptProcessor;
-import cn.ihoway.relation.io.RelationOptInput;
-import cn.ihoway.relation.io.RelationOptOutput;
 import cn.ihoway.type.RelationAct;
 import cn.ihoway.util.AccessRoute;
-import cn.ihoway.util.HowayRequest;
 import cn.ihoway.util.HowayResult;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.web.bind.annotation.*;

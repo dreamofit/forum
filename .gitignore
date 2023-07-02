@@ -4,6 +4,5 @@ target/
 forum-api/target
 forum-core/target
 forum-processor/target
-forum-provider/target
+forum-access/target
 forum-util/target
-forum-web/target

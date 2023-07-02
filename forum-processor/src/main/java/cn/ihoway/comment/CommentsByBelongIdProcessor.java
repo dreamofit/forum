@@ -5,7 +5,7 @@ import cn.ihoway.api.user.UserAsm;
 import cn.ihoway.comment.io.CommentsByBelongIdInput;
 import cn.ihoway.comment.io.CommentsByBelongIdOutput;
 import cn.ihoway.common.CommonProcessor;
-import cn.ihoway.container.HowayContainer;
+import cn.ihoway.util.HowayContainer;
 import cn.ihoway.entity.Comment;
 import cn.ihoway.impl.CommentServiceImpl;
 import cn.ihoway.service.CommentService;

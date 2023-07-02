@@ -1,12 +1,7 @@
-package cn.ihoway.controller.essay;
+package cn.ihoway.web.controller.essay;
 
-import cn.ihoway.essay.EssayAddProcessor;
-import cn.ihoway.essay.EssayDetailProcessor;
-import cn.ihoway.essay.EssaySearchProcessor;
-import cn.ihoway.essay.io.*;
 import cn.ihoway.type.Permission;
 import cn.ihoway.util.AccessRoute;
-import cn.ihoway.util.HowayRequest;
 import cn.ihoway.util.HowayResult;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.web.bind.annotation.*;

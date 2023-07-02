@@ -16,8 +16,7 @@
         <module>forum-api</module>
         <module>forum-core</module>
         <module>forum-processor</module>
-        <module>forum-provider</module>
-        <module>forum-web</module>
+        <module>forum-access</module>
         <module>forum-util</module>
     </modules>
 

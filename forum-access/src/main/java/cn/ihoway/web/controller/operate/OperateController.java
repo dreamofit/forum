@@ -1,11 +1,7 @@
-package cn.ihoway.controller.operate;
+package cn.ihoway.web.controller.operate;
 
-import cn.ihoway.operate.OperateActionProcessor;
-import cn.ihoway.operate.io.OperateActionInput;
-import cn.ihoway.operate.io.OperateActionOutput;
 import cn.ihoway.type.OperateAct;
 import cn.ihoway.util.AccessRoute;
-import cn.ihoway.util.HowayRequest;
 import cn.ihoway.util.HowayResult;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.web.bind.annotation.*;

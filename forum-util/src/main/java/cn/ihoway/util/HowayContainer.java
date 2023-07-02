@@ -1,4 +1,4 @@
-package cn.ihoway.container;
+package cn.ihoway.util;
 
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
