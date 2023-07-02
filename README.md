@@ -3,9 +3,10 @@
     该项目类似论坛之类的，准备功能有资讯、圈子讨论以及个人空间，将要实现的功能包括对帖子以及评论的点赞、收藏、点踩、举报等功能
 
 ## 使用方法
-    运行WebServiceInit, 加上jvm参数： --add-opens java.base/java.lang=ALL-UNNAMED
-    需要关联的项目howaysso，用户信息存在这个项目，目前是必须关联，除非手动修改。
-    还有一个是HowayRecord，记录每次请求的详细信息，但是不关联不影响项目正常运行。
+    运行ServiceInit, 加上jvm参数： --add-opens java.base/java.lang=ALL-UNNAMED
+    必须需要关联的项目howaysso，用户信息存在这个项目，目前是必须关联，除非手动修改代码。
+    需要关联项目HowayRecord，记录每次请求的详细信息，但是不关联不影响项目正常运行。
+    还需要关联howaySearch，全文搜索引擎服务，但是不关联不影响项目正常运行。
 
 
 ## 技术准备
@@ -16,8 +17,7 @@
     forum-processor： 处理器层，各服务核心处理逻辑
     forum-util: 工具库
     forum-api: dubbo api
-    forum-provider: api服务提供（暂无服务对外提供）
-    forum-web: restful api提供
+    forum-access: 提供restful api
 
 ## 待实现或正在考虑的功能
     1.获取我的评论、我的回复、我的空间、我的收藏、我的关注粉丝、我的设置等信息
@@ -37,7 +37,7 @@
     15.空间开放权限问题 公开、仅好友、仅粉丝、仅个人   权限大小问题，空间权限与动态权限
     16.个人主页自定义
 
-## api说明
+## api说明(待更新)
     用户模块，如登录注册之类的见howaysso项目
     接口规范遵循restful规范，每次都需要上送token,成功调用之后也会返回token,token有时间限制，所以每次调用接口后及时更新token
 
