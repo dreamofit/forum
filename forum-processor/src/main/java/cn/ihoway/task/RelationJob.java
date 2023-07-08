@@ -8,10 +8,10 @@ import org.quartz.JobExecutionException;
 /**
  * 定时任务，将relationRedis中的数据持久化到数据库中
  */
-public class RelationJob  implements Job {
+public class RelationJob implements Job {
+    private final RelationRedis relationRedis = new RelationRedis();
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        RelationRedis relationRedis = new RelationRedis();
         relationRedis.putAllToDb();
     }
 }

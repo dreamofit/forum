@@ -96,6 +96,7 @@ public class RelationRedis {
             Relation relation = (Relation) SerializeUtil.unserialize(map.get(key));
             relationService.add(relation);
         }
+        relationService.free();
     }
 
     /**

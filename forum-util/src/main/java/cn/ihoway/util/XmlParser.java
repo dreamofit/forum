@@ -16,6 +16,7 @@ public class XmlParser {
 
     private static final HowayLog logger = new HowayLog(XmlParser.class);
     private String pathName = ""; //xml文件路径
+
     private List<Element> elements; //获取全部元素标签
     private String pk = "id"; //元素主键名称,默认为id
 
@@ -93,5 +94,9 @@ public class XmlParser {
 
     public void setPk(String pk) {
         this.pk = pk;
+    }
+
+    public List<Element> getElements() {
+        return elements;
     }
 }

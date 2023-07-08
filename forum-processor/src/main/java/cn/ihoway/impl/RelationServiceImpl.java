@@ -34,4 +34,9 @@ public class RelationServiceImpl implements RelationService {
     public List<Relation> selectAll() {
         return relationDao.selectALl();
     }
+
+    @Override
+    public void free(){
+        sqlSession.close();
+    }
 }

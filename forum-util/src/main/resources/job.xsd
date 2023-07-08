@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://ihoway.cn/job"
+            targetNamespace="http://ihoway.cn/job">
+    <xsd:complexType name="serviceType">
+        <xsd:complexContent>
+            <xsd:extension  base="abstractMethodType" >
+
+                <xsd:attribute  name="id" type="xsd:string" use="required" >
+                    <xsd:annotation>
+                        <xsd:documentation><![CDATA[ 定时任务id. ]]></xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+
+                <xsd:attribute name="impl" type="xsd:string" use="required">
+                    <xsd:annotation>
+                        <xsd:documentation><![CDATA[ 实现类. ]]></xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+
+                <xsd:attribute name="cron" type="xsd:string" use="required">
+                    <xsd:annotation>
+                        <xsd:documentation><![CDATA[ 定时时长设置. ]]></xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+
+                <xsd:attribute name="status" type="xsd:boolean" use="optional">
+                    <xsd:annotation>
+                        <xsd:documentation><![CDATA[ 任务状态，默认true,false代表目前不执行. ]]></xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:element name="job" type="serviceType">
+        <xsd:annotation>
+            <xsd:documentation><![CDATA[ 定时任务处理 ]]></xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+
+    <xsd:complexType name="abstractMethodType">
+
+    </xsd:complexType>
+
+</xsd:schema>

@@ -5,9 +5,12 @@ import cn.ihoway.entity.Operate;
 import cn.ihoway.service.OperateService;
 import cn.ihoway.util.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OperateServiceImpl implements OperateService {
 
     private final SqlSession sqlSession = MybatisUtils.getSqlSession();
@@ -51,6 +54,11 @@ public class OperateServiceImpl implements OperateService {
     @Override
     public int truncate(){
         return operateDao.truncate();
+    }
+
+    @Override
+    public void free(){
+        sqlSession.close();
     }
 
 }

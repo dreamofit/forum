@@ -1,6 +1,7 @@
 package cn.ihoway.service;
 
 import cn.ihoway.entity.Operate;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,4 +13,5 @@ public interface OperateService {
     List<Operate> selectAll();
     Operate selectOne(Integer userId,Integer type,Integer optId,Integer action);
     int truncate();
+    void free();
 }

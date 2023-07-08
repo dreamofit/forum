@@ -9,9 +9,11 @@ import org.quartz.JobExecutionException;
  * 定时任务，将operateRedis中的数据持久化到数据库中
  */
 public class OperateJob implements Job {
+
+    private final OperateRedis operateRedis = new OperateRedis();
+
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        OperateRedis operateRedis = new OperateRedis();
         operateRedis.putAllToDb();
     }
 }

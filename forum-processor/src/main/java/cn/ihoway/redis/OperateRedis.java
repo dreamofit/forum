@@ -7,6 +7,7 @@ import cn.ihoway.type.OperateAct;
 import cn.ihoway.util.HowayLog;
 import cn.ihoway.util.HowayRedisCache;
 import org.mybatis.caches.redis.SerializeUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -23,17 +24,20 @@ public class OperateRedis {
     private final int INVERSE_MODE = 3; //反转index key
 
 
+
+
+
     /**
      * 已缓存为主
      */
     public void init(){
-        if(cache.getSize() == 0){
+        //if(cache.getSize() == 0){
             //从数据库读取全部数据
             List<Operate> operates = operateService.selectAll();
             for(Operate operate:operates){
                 add(operate);
             }
-        }
+        //}
         //key 为：唯一索引(user_id,type,opt_id,action)
     }
 
@@ -185,6 +189,7 @@ public class OperateRedis {
                 //operateService.update(operate);
            // }
         }
+        operateService.free();
     }
 
     /**
