@@ -10,8 +10,9 @@ import org.quartz.JobExecutionException;
  */
 public class RelationJob implements Job {
     private final RelationRedis relationRedis = new RelationRedis();
+
     @Override
-    public void execute(JobExecutionContext context) throws JobExecutionException {
+    public void execute(JobExecutionContext context) {
         relationRedis.putAllToDb();
     }
 }

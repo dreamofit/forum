@@ -14,7 +14,7 @@ final class RedisConfigurationBuilder {
     private static final RedisConfigurationBuilder INSTANCE = new RedisConfigurationBuilder();
     private static final String SYSTEM_PROPERTY_REDIS_PROPERTIES_FILENAME = "redis.properties.filename";
     private static final String REDIS_RESOURCE = "redis.properties";
-    private final String redisPropertiesFilename = System.getProperty("redis.properties.filename", "redis.properties");
+    private final String redisPropertiesFilename = System.getProperty(SYSTEM_PROPERTY_REDIS_PROPERTIES_FILENAME, REDIS_RESOURCE);
 
     private RedisConfigurationBuilder() {
     }

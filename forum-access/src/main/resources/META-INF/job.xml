@@ -2,8 +2,7 @@
 <job xmlns:howay="http://ihoway.cn/job"
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://ihoway.cn/job
-            https://ihoway.cn/service/job.xsd
-http://ihoway.cn/job ">
+            https://ihoway.cn/service/job.xsd">
 
     <howay:job id="RelationJob" impl="cn.ihoway.task.RelationJob" cron="* 0/30 * * * ? *" />
     <howay:job id="OperateJob" impl="cn.ihoway.task.OperateJob" cron="* 0/30 * * * ? *" />

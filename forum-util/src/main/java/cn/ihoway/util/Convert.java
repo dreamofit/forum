@@ -131,14 +131,15 @@ public class Convert {
                             f.set(obj,tempObj);
                         }else{
                             //对于不继承cn.ihoway.common.CommonSeria的内部类不进行转换
-                            if(map.get(fd.getName()) == null || !map.get(fd.getName()).toString().contains("{") || !map.get(fd.getName()).toString().contains("}")){
+                            //if(map.get(fd.getName()) == null || !map.get(fd.getName()).toString().contains("{") || !map.get(fd.getName()).toString().contains("}")){
+                            if(map.get(fd.getName()) != null){
                                 if(Integer.class.getName().equals(f.getType().getName())){
                                     f.set(obj,HowayStringUtils.toInteger(map.get(fd.getName())));
                                 }else {
                                     f.set(obj,map.get(fd.getName()));
                                 }
-
                             }
+                           // }
                         }
                     }
                     //基本类型自动赋值
