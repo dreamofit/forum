@@ -160,7 +160,7 @@ public abstract class CommonProcessor<I extends CommonInput,O extends CommonOutp
             logger.info("end --> response: "+ JSON.toJSONString(response));
             return response;
         }catch (Exception e){
-            logger.error("[error] processor has an exception :" + e.getCause());
+            logger.error("[error] processor has an exception :" + Arrays.toString(e.getStackTrace()));
             e.printStackTrace();
             return HowayResult.createFailResult(StatusCode.JAVAEXCEPTION,output);
         }
@@ -193,7 +193,7 @@ public abstract class CommonProcessor<I extends CommonInput,O extends CommonOutp
 
         }catch (Exception e){
             logger.error("[warning] input日志写入失败，cause by :" + e.getCause());
-            e.printStackTrace();
+            logger.error(Arrays.toString(e.getStackTrace()));
         }
         return HowayResult.createSuccessResult(output);
     }
@@ -211,7 +211,7 @@ public abstract class CommonProcessor<I extends CommonInput,O extends CommonOutp
             recordAsm.addRecord(addInput);
         }catch (Exception e){
             logger.error("[warning] output日志写入失败，cause by :" + e.getCause());
-            e.printStackTrace();
+            logger.error(Arrays.toString(e.getStackTrace()));
         }
 
     }
@@ -305,7 +305,7 @@ public abstract class CommonProcessor<I extends CommonInput,O extends CommonOutp
                     }
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    logger.error(Arrays.toString(e.getStackTrace()));
                 }
             }
         }
