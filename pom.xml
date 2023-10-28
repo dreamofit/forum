@@ -31,7 +31,7 @@
         <lombok.version>1.18.22</lombok.version>
         <lang3.version>3.12.0</lang3.version>
         <fastjson.version>1.2.79</fastjson.version>
-        <dubbo.version>2.6.12</dubbo.version>
+        <dubbo.version>3.2.6</dubbo.version>
         <netty.version>4.1.73.Final</netty.version>
         <curator.version>5.2.0</curator.version>
     </properties>
@@ -89,7 +89,7 @@
 
         <!-- dubbo -->
         <dependency>
-            <groupId>com.alibaba</groupId>
+            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
             <version>${dubbo.version}</version>
             <exclusions>
