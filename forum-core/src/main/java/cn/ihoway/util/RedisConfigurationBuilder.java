@@ -1,14 +1,15 @@
 package cn.ihoway.util;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Iterator;
-import java.util.Properties;
-import java.util.Map.Entry;
 import org.apache.ibatis.cache.CacheException;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
 import org.mybatis.caches.redis.RedisConfig;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Properties;
 
 final class RedisConfigurationBuilder {
     private static final RedisConfigurationBuilder INSTANCE = new RedisConfigurationBuilder();
@@ -43,7 +44,8 @@ final class RedisConfigurationBuilder {
 
             }
         }
-
+        //重写config，以便获取环境变量的值
+        CommonUtils.getByEnv(config);
         RedisConfig jedisConfig = new RedisConfig();
         this.setConfigProperties(config, jedisConfig);
         return jedisConfig;

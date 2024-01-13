@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
     <!--向 zookeeper 订阅 provider 的地址，由 zookeeper 定时推送-->
-    <dubbo:registry address="zookeeper://192.168.0.107:2181"/>
+    <dubbo:registry address="zookeeper://${SERVICE_ADDR:192.168.0.107}:2181"/>
     <dubbo:reference id="RecordAsm" interface="cn.ihoway.api.record.RecordAsm" check="false" />
     <dubbo:reference id="TokenAsm" interface="cn.ihoway.api.security.TokenAsm"/>
     <dubbo:reference id="UserAsm" interface="cn.ihoway.api.user.UserAsm"/>
