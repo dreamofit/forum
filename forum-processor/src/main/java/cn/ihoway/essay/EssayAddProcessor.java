@@ -17,6 +17,7 @@ import cn.ihoway.util.Convert;
 import cn.ihoway.util.HowayConfigReader;
 import cn.ihoway.util.HowayLog;
 import cn.ihoway.util.HowayResult;
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -61,6 +62,7 @@ public class EssayAddProcessor extends CommonProcessor<EssayAddInput, EssayAddOu
     protected HowayResult process(EssayAddInput input, EssayAddOutput output) {
         logger.info("EssayAddProcessor process begin");
         HashMap<String, Object> user = getUserByToken(input.token);
+        logger.info(JSON.toJSONString(user));
         input.inChomm.author = (Integer) user.get("id");
         Integer role = (Integer) user.get("role");
         if(input.inChomm.type == EssayType.INFORMATION.getType() && role < AuthorityLevel.ADMINISTRATOR.getLevel()){
@@ -69,6 +71,7 @@ public class EssayAddProcessor extends CommonProcessor<EssayAddInput, EssayAddOu
         }
         if(StringUtils.isNotBlank(input.inChomm.text)){
             logger.info(input.inChomm.text);
+            //这里url地址暂时不改，反正要么是取这里的url地址，要么是/essay/+id作为地址，反而是id是否需要使用uuid呢？
             String name = "/"+getEventNo()+".html";
             input.inChomm.url =  HowayConfigReader.getConfig("howay.properties","essay.url") + input.inChomm.author + name;
             WriteDb.writeEssay(input.inChomm.text,String.valueOf(input.inChomm.author),name);

@@ -311,14 +311,6 @@ public abstract class CommonProcessor<I extends CommonInput,O extends CommonOutp
         }
         return HowayResult.createSuccessResult(output);
 
-        //检查input类字段
-        //if(inputCheck.check()){
-
-       // }
-
-        //Field[] fileds = input.getClass().getFields();
-        //InsideCheck annotation = this.getClass().getFields().getAnnotation(InsideCheck.class);
-        //检查input内部类字段
     }
 
 }
